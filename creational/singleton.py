@@ -6,10 +6,11 @@ Python implementation differs significantly than the Java implementation.
 In Java the constructor becomes private in order to prevent the direct instance creation
 and provides a special public static method which controls the instantiation.
 In Python we have several different approaches:
-1. overwrite the __new__ method which controls the instance creation (easiest)
+1. overwrite the __new__ method which controls the instance creation (easy)
 2. create a Singleton mixin class which will be used to wrap the __new__ method (better, since it can be reused)
 3. use a singleton class decorator to do the same: overwrite __new__ method (the best, but has some caveats)
 4. use a Singleton metaclass and modify its __call__ method to control the instance creation (this is cool)
+5. use a module level accessed variable which defines an instance (most commonly used in practice)
 
 Worth mentioning: singleton is not a very flexible pattern since it does not handle inheritance well.
 The classes which subclass a singleton class will have different instances, not one!
