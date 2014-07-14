@@ -10,6 +10,10 @@ In Python we have several different approaches:
 2. create a Singleton mixin class which will be used to wrap the __new__ method (better, since it can be reused)
 3. use a singleton class decorator to do the same: overwrite __new__ method (the best, but has some caveats)
 4. use a Singleton metaclass and modify its __call__ method to control the instance creation (this is cool)
+
+Worth mentioning: singleton is not a very flexible pattern since it does not handle inheritance well.
+The classes which subclass a singleton class will have different instances, not one!
+See the "Borg" pattern which solves this problem.
 """
 
 
