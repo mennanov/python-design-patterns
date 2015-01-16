@@ -31,7 +31,9 @@ class DBConnection(object):
 
 class DBConnectionSingleton(DBConnection):
     """
-    This is the first option: overwrite the __new__ method
+    This is the first option: overwrite the __new__ method.
+    This method has a serious drawback: __init__ method will be called each time a singleton is requested, since
+    we're not reimplementing a __call__ method in a metaclass.
     """
 
     _instance = None
@@ -124,6 +126,7 @@ class SingletonMeta(type):
     def __call__(self, *args, **kwargs):
         if self._instance is None:
             self._instance = super(SingletonMeta, self).__call__(*args, **kwargs)
+        # if _instance exists __new__ and __init__ methods are not called
         return self._instance
 
 
